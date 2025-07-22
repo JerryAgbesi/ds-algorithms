@@ -1,2 +1,2 @@
-# Slightly-Techie-coding-challenges
-This is a collection of coding challenge solutions and general implementations of some data structures (Mostly in Python)
+# ds-algorithms
+A collection of coding challenge solutions and general implementations of some data structures and algorithms (Mostly in Python)
