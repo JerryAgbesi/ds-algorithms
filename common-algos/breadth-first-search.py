@@ -1,3 +1,5 @@
+from collections import deque
+
 graph = {}
 
 graph["Me"] = ["Liliana", "Gideon", "Chandra","Sam"]
@@ -9,28 +11,27 @@ graph["Carmy"] = ["Sam"]
 graph["Mike"] = []
 graph["Cheeto"] = []
 graph["Bob"] = []
-graph["Sam"] = ["Carmy"]
+graph["Sam"] = ["Carmy","Kwame"]
 graph["Levon"] = ["Deveon"]
-
-seen = set()
-stack = []
 
 def isGhanaian(name: str)-> bool:
   return name in ["Ama","Yaw","Kwame"]
 
-def dfs(name):
-  stack.extend(graph[name])
-  
+def bfs(name):
+  search_queue = deque()
+  seen = set()
+  search_queue += graph[name]
 
-  while stack:
-    print(stack)
-    top = stack.pop()
-    if top not in seen:
-      seen.add(top)
-      if isGhanaian(top):
-        return top
+  while search_queue:
+    person = search_queue.popleft()
+    if not person in seen:
+      seen.add(person)
+      if isGhanaian(person):
+        print(person)
+        return True
       else:
-        stack.extend(graph[top])
+        search_queue += graph[person]
+        
   return False
 
-print(dfs("Me"))
+bfs("Me")
